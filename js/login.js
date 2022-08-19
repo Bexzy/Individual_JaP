@@ -3,7 +3,7 @@ function revisarForm() {
     const pass = document.getElementById("form3Example4").value
 
         if ((mail.replace(/\s+/g, '')) != "" && (pass.replace(/\s+/g, '')) != "") {
-            window.location.replace("index.html");;
+            window.location.replace("main.html");;
         }
         else {
             document.querySelector("span").innerHTML = ("El correo o la contraseña son incorrectas")
