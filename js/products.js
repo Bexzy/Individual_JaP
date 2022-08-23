@@ -35,9 +35,19 @@ function getHTML(list) {
 document.addEventListener("DOMContentLoaded", async () => {
 
     const list = await lista(productos)
+    
 
     list.forEach(element => {
         let pag = getHTML(element)
         document.getElementById("listaP").innerHTML += pag
     });
+});
+
+
+document.addEventListener("DOMContentLoaded", async () => {
+    const categ = document.getElementById("titulo")
+    const respuesta2 = await fetch(productos);
+    const data2 = await respuesta2.json();
+
+    categ.innerHTML += (data2.catName)
 });
