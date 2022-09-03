@@ -10,6 +10,11 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+
+  <script src="https://kit.fontawesome.com/efa6adbe4b.js" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>  
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -19,7 +24,9 @@
     }
 
       .sobre :hover{
-      background-color: #3b756c;
+      margin: 0px 0px 0px 0px;
+      padding: 0px;
+      
     }
 
     .list-group-item.cursor-active {
@@ -32,36 +39,127 @@
     footer {
       background-color: #229fbc;
     }
+
+
+    .btnPers {
+  background-color: #3b756c;
+  color: white;
+  padding: 5px 10px;
+  margin: 0px;
+  opacity: 0.8;
+  transition: 0.3s;
+}
+
+h4.mb-1 {
+  padding: 6px px;
+  font-weight: bold;
+}
+small {
+  padding: 10px;
+}
+
+.btnPersImg {
+  background-color: #3b756c;
+  color: white;
+  padding: 0px 20px 0px 0px;
+  font-size: 16px;
+
+  transition: 0.3s;
+}
+
+.btnPers:hover {
+  opacity: 1;
+}
+
   </style>
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
-    <div class="container">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav w-100 justify-content-between">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="categories.html">Categorías</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="sell.html">Vender</a>
-          </li>
-          <li class="nav-item">
-          </li>
-        </ul>
-      </div>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1 flex-nowrap" style="height: 60px;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="main.html">
+      <img
+        src="img/small-logo.png"
+        class="me-2"
+        height="35"
+        alt="MDB Logo"
+        loading="lazy"
+      />
+    </a>
+    <div class="nav-item">
+      <a class="text-white-50" href="categories.html">Categorías</a>
     </div>
-  </nav>
+    <div class="nav-item">
+      <a class="text-white-50" href="sell.html">Vender</a>
+    </div>
+      <div style="height: 130px;">
+        <div class="container">  
+          <div class="dropdown mt-5">  
+            <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" id="user">  
+              <i class="fa-solid fa-user-large"></i>
+            </button>  
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="my-profile.html">&nbsp;<i class="fa-solid fa-user"></i> Perfil </a>  
+                <a class="dropdown-item" href="cart.html"><i class="fa-solid fa-cart-shopping"></i> Carrito </a> 
+                <a class="dropdown-item" href="sell.html"> <i class="fa-solid fa-tags"></i> Mis Productos </a>   
+                <a class="dropdown-item" href="index.html"> <i class="fa-solid fa-power-off"></i> Desconectarse </a>  
+            </div>  
+        </div>  
+      </div>  
+    </div>
+  </div>
+</nav>
   <main class="pb-5">
     <div class="text-center p-4">
       <h2>Productos</h2>
-      <p class="lead">Verás aquí todos los productos de la categoria </p>
+      <p class="lead" id="titulo">Verás aquí todos los productos de la categoria </p>
     </div>
+
+
+
+
+
+    <div class="container"> 
+      <div class="row">
+        <div class="col text-end">
+          <div class="btn-group btn-group-toggle mb-4" data-bs-toggle="buttons">
+            <input type="radio" class="btn-check" name="options">
+            <label class="btn btn-light" for="sortAsc" style="color: #29534d; font-weight: bold; border-color: #52a295;" id="precioUp">$<i class="fa-solid fa-arrow-down-short-wide"></i></label>
+            <input type="radio" class="btn-check" name="options">
+            <label class="btn btn-light" for="sortDesc" style="color: #29534d; font-weight: bold; border-color: #52a295;" id="precioDown">$<i class="fa-solid fa-arrow-up-wide-short"></i></label>
+            <input type="radio" class="btn-check" name="options">
+            <label class="btn btn-light" for="sortByCount" style="color: #29534d; font-weight: bold; border-color: #52a295;" id="filtroVentas"><i class="fa-solid fa-bag-shopping"></i><i class="fa-solid fa-arrow-up-long"></i></label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <input type="text" name="" id="buscador" class="form-control" placeholder="Filtrar por Nombre del Artículo" style="color: #29534d; font-weight: bold; width: 500px; position:relative; left:15px; top:38px; border-color: #52a295;">
+        <div class="col-lg-6 offset-lg-6 col-md-12 mb-1 container">
+          <div class="row container p-0 m-0">
+            <div class="col">
+              <p class="font-weight-normal text-end my-2" style="color: #29534d; font-weight: bold;">Rango de Precio</p>
+            </div>
+            <div class="col">
+              <input class="form-control" type="number" placeholder="min." id="minFiltro" style="font-weight: bold; border-color: #52a295;">
+            </div>
+            <div class="col">
+              <input class="form-control" type="number" placeholder="máx." id="maxFiltro" style="font-weight: bold; border-color: #52a295;">
+            </div>
+            <div class="col-3 p-0">
+              <div class="btn-group" role="group">
+                <button class="btn btn-light btn-block" id="botonFiltrar" style="color: #29534d; font-weight: bold; border-color: #52a295;">Filtrar</button>
+                <button class="btn btn-light btn-sm" id="limpiarFiltro" style="color: #29534d; font-weight: bold; border-color: #52a295;">Limpiar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
 
     <div id="listaP">
       
@@ -70,16 +168,18 @@
 
 
   </main>
-  <footer class="">
-    <div class="container">
-      <p class="float-end">
-        <a href="#" style="color: white;">Volver arriba</a>
-      </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank" style="color: white;">Jovenes a Programar</a> -
-        2022</p>
-      <p>Clickea <a target="_blank" href="Letra.pdf" style="color: white;">aquí</a> para descargar la letra del obligatorio.</p>
-    </div>
-  </footer>
+      <!-- Footer -->
+      <footer class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5" style="background-color: #229fbc;">
+      
+        <p>
+          Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank" style="color: white;">Jovenes a Programar</a> -
+          2022 | Clickea <a target="_blank" href="Letra.pdf" style="color: white;">aquí</a> para descargar la letra del obligatorio.
+        </p>
+        <p>
+          <a href="#" style="color: white;">Volver arriba</a>
+        </p>
+  
+        </footer>
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
