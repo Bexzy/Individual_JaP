@@ -141,3 +141,9 @@ document.addEventListener("DOMContentLoaded", function(e){
         showCategoriesList();
     });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const userHTML = document.getElementById("user");
+
+    userHTML.innerHTML += localStorage.getItem("user");
+});
