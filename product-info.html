@@ -10,49 +10,102 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/info-products.css">
+
+  <script src="https://kit.fontawesome.com/efa6adbe4b.js" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>  
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
-    <div class="container">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav w-100 justify-content-between">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="categories.html">Categorías</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="sell.html">Vender</a>
-          </li>
-          <li class="nav-item">
-          </li>
-        </ul>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1 flex-nowrap" style="height: 60px;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="main.html">
+        <img
+          src="img/small-logo.png"
+          class="me-2"
+          height="35"
+          alt="MDB Logo"
+          loading="lazy"
+        />
+      </a>
+      <div class="nav-item">
+        <a class="text-white-50" href="categories.html">Categorías</a>
+      </div>
+      <div class="nav-item">
+        <a class="text-white-50" href="sell.html">Vender</a>
+      </div>
+        <div style="height: 130px;">
+          <div class="container">  
+            <div class="dropdown mt-5">  
+              <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" id="user">  
+                <i class="fa-solid fa-user-large"></i>
+              </button>  
+              <div class="dropdown-menu">
+                  <a class="dropdown-item" href="my-profile.html">&nbsp;<i class="fa-solid fa-user"></i> Perfil </a>  
+                  <a class="dropdown-item" href="cart.html"><i class="fa-solid fa-cart-shopping"></i> Carrito </a> 
+                  <a class="dropdown-item" href="sell.html"> <i class="fa-solid fa-tags"></i> Mis Productos </a>   
+                  <a class="dropdown-item" href="index.html"> <i class="fa-solid fa-power-off"></i> Desconectarse </a>  
+              </div>  
+          </div>  
+        </div>  
       </div>
     </div>
   </nav>
-  <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+    <main class="pb-5">
+
+      <div id="main">
+
+
+
       </div>
+
+
+    <div style="margin: 0px 100px;">
+      <div class="secComment" style="margin-bottom: 30px;">
+          Reseñas
+      </div>
+      <div id="comentarios">
+
+
+      </div>
+      <div class="comentar1">Comentar</div>
+        <div class="comentar2">Tu opinión: </div>
+        <textarea name="" cols="100" rows="5" class="textComment" id="txtComment" placeholder="Escribe aquí tu comentario."></textarea>
+        <br>
+        <div class="comentar2">Tu Puntuación: </div>
+        <select id="score" class="scoreSubmitComment">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        <br>
+        <button class="btn btn-success boton" id="btnComment">Enviar</button>
     </div>
+
+
+
+
+
+
   </main>
-  <footer class="text-muted">
-    <div class="container">
-      <p class="float-end">
-        <a href="#">Volver arriba</a>
-      </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a> -
-        2022</p>
-      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
-    </div>
-  </footer>
+  
+
+      <!-- Footer -->
+      <footer class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5" style="background-color: #229fbc;">
+      
+        <p>
+          Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank" style="color: white;">Jovenes a Programar</a> -
+          2022 | Clickea <a target="_blank" href="Letra.pdf" style="color: white;">aquí</a> para descargar la letra del obligatorio.
+        </p>
+        <p>
+          <a href="#" style="color: white;">Volver arriba</a>
+        </p>
+  
+        </footer>
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
