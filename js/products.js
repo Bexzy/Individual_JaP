@@ -13,7 +13,7 @@ async function lista(url) {
 
 function getHTML(list) {
     return `
-    <div class="list-group-item cursor-active sobre btnPers" style="border-color: #3b756c; margin: 2px;" id="${list.id}">
+    <div class="list-group-item cursor-active sobre btnPers" style="border-color: #3b756c; margin: 2px;" id="${list.id}" onclick="setProdID(${list.id})">
         <div class="row btnPers">
             <div class="col-3 d-flex btnPersImg">
                 <img src="${list.image}" alt="Imagen" class="card-img" style:"background-color: #3b756c; border-color:  #3b756c;">
@@ -31,7 +31,7 @@ function getHTML(list) {
 };
 
 
-
+/* Genera el título dinamicamente */
 document.addEventListener("DOMContentLoaded", async () => {
     const categ = document.getElementById("titulo")
     const respuesta2 = await fetch(productos);
@@ -40,11 +40,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     categ.innerHTML += (data2.catName)
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-    const userHTML = document.getElementById("user");
-
-    userHTML.innerHTML += localStorage.getItem("user");
-});
 
 
 
@@ -184,3 +179,20 @@ buscador.addEventListener("keyup", async () => {
         }
     })
 })
+
+
+
+/* Deja en el local storage la información necesaria para ingresar al producto deseado tras su click */
+function setProdID(id) {
+    localStorage.setItem("prodID", id);
+    window.location = "product-info.html"
+};
+
+
+
+/* Trae e imprime el username en la navbar */
+document.addEventListener("DOMContentLoaded", () => {
+    const userHTML = document.getElementById("user");
+
+    userHTML.innerHTML += localStorage.getItem("user");
+});
