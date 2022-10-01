@@ -1,5 +1,6 @@
 const productos = "https://japceibal.github.io/emercado-api/products/" + localStorage.getItem("prodID") + ".json"
 const comments = "https://japceibal.github.io/emercado-api/products_comments/" +localStorage.getItem("prodID") + ".json"
+const catsProd = "https://japceibal.github.io/emercado-api/cats_products/"+ localStorage.getItem("catID") + ".json"
 let userComments = [];
 let prodUserComments = [];
 
@@ -40,8 +41,31 @@ document.addEventListener("DOMContentLoaded", async () => {
     <div class="row flex-nowrap">
         <div class="col-md-5" style="height: 600px; width: ;">
             <div class="pb-3">
-                <img src="${itemData.images[0]}" alt="" class="star fotoMain">
+            <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active" data-bs-interval="10000">
+                    <img src="${itemData.images[0]}" class="d-block star fotoMain">
+                </div>
+                <div class="carousel-item" data-bs-interval="2000">
+                    <img src="${itemData.images[1]}" class="d-block star fotoMain">
+                </div>
+                <div class="carousel-item">
+                    <img src="${itemData.images[2]}" class="d-block star fotoMain">
+                </div>
+                <div class="carousel-item">
+                    <img src="${itemData.images[3]}" class="d-block star fotoMain">
+                </div>
             </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
             <div class="row">
                 <div class="col-md-4"><img src="${itemData.images[1]}" alt="" class="sub foto"></div>
                 <div class="col-md-4"><img src="${itemData.images[2]}" alt="" class="sub foto"></div>
@@ -165,10 +189,30 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     });
 
+    /* GENERA LA SECCIÓN DE PRODUCTOS RELACIONADOS */
+    const related = document.getElementById("related");
+
+    let categoria = await getData(catsProd);
+    categoria.products.forEach(element => {
+        if (element.id != localStorage.getItem("prodID")) {
+            related.innerHTML += 
+            `
+            <div class="col-md-4" onclick="recargar(${element.id})">
+                <div class="card mb-4 shadow-sm custom-card cursor-active btn-success green align-items-start p-0" id="muebles">
+                    <img class="bd-placeholder-img card-img-top" src="${element.image}">
+                    <h3 class="m-3">${element.name}</h3>
+                </div>
+            </div>
+            `
+        }
+    });
 });
 
 
-
+function recargar(id) {
+    localStorage.setItem("prodID", id)
+    window.location = "product-info.html"
+}
 
 
 /* Trae e imprime el username en la navbar */
@@ -176,6 +220,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const userHTML = document.getElementById("user");
 
     userHTML.innerHTML += localStorage.getItem("user");
+
+        /* Chequea si el usuario está logeado, sino lo redirije al logIn */
+        if (localStorage.getItem("user") == null) {
+            window.location = "index.html"
+        }
 });
 
 
@@ -249,6 +298,4 @@ botonComentar.addEventListener("click", () => {
         }
     });
 }
-
-
 });

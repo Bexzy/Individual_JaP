@@ -195,4 +195,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const userHTML = document.getElementById("user");
 
     userHTML.innerHTML += localStorage.getItem("user");
+
+    if (localStorage.getItem("user") == null) {
+        window.location = "index.html"
+    }
 });
