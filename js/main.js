@@ -12,7 +12,12 @@ document.addEventListener("DOMContentLoaded", function(){
         window.location = "products.html"
     });
 
+    /* Imprime el usuario en el navbar */
     const userHTML = document.getElementById("user")
-
     userHTML.innerHTML += localStorage.getItem("user")
+
+    /* Chequea si el usuario está logeado, sino lo redirije al logIn */
+    if (localStorage.getItem("user") == null) {
+        window.location = "index.html"
+    }
 });

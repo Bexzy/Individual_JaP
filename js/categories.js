@@ -146,4 +146,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const userHTML = document.getElementById("user");
 
     userHTML.innerHTML += localStorage.getItem("user");
+
+        /* Chequea si el usuario está logeado, sino lo redirije al logIn */
+        if (localStorage.getItem("user") == null) {
+            window.location = "index.html"
+        }
 });

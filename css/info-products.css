@@ -126,3 +126,36 @@ body {
     border: 3px solid #3b756c;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
+
+#related {
+    margin-top: 80px;
+}
+
+.similarProd {
+    font-size: 30px;
+    font-weight: bold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin-bottom: 24px;
+    margin-left: 15px;
+}
+
+.related {
+    width: 400px;
+    margin-right: 50px;
+}
+
+.relatedImg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.nameRelated {
+    padding: 10px
+}
+
+.green {
+    background-color: #48867d;
+    border-color: #48867d;
+    color: black;
+}
