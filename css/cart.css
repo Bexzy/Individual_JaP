@@ -1,0 +1,159 @@
+main {
+    background-color: #d3eae2;
+    min-height: 800px;
+    padding-bottom: 80px;
+}
+
+hr {
+    color: #29534d;
+    padding: 2px;
+}
+
+
+body {
+    max-width: 100%;
+}
+
+
+.row {
+    max-width: 100%;
+}
+
+.input-group-text {
+    background-color: #7fc4b8;
+    border: 3px solid #52a295;
+    border-right: 0px;
+    font-weight: bold;
+    color: #29534d;
+}
+
+.form-control {
+    border: 2px solid #52a295;
+}
+
+
+.trapecio1 {
+    height: 85%;
+    border-bottom: 100px solid transparent;
+    border-top: 100px solid transparent;
+    border-right: 32vw solid #52a295;
+    position:fixed; 
+    right: 0px; 
+    top: 100px;
+}
+
+.trapecio2 {
+    height: 85%;
+    border-bottom: 270px solid transparent;
+    border-top: 270px solid transparent;
+    border-right: 33vw solid #468d81;
+    position:fixed; 
+    right: 0px; 
+    top: 100px;
+}
+
+.trapecio3 {
+    height: 10%;
+    border-bottom: 400px solid transparent;
+    border-top: 400px solid transparent;
+    border-right: 32.6vw solid #31665d;
+    position:fixed; 
+    right: 0px; 
+    top: 110px;
+}
+
+.trapecio4 {
+    height: 80%;
+    border-bottom: 100px solid transparent;
+    border-top: 100px solid transparent;
+    border-right: 31vw solid #7fc4b8;
+    position:fixed; 
+    right: 0px; 
+    top: 125px;
+}
+
+.imgventa {
+    width: 27vw;
+    height: 11vw;
+    border: 3px solid #52a295;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.info {
+    position:absolute; right: 30px; top: 240px;
+}
+
+.price {
+    color: rgb(0, 126, 0);
+}
+
+.form-select {
+    border: 2px solid #52a295;
+    background-color: #bcf5eb;
+    padding: 10px;
+    font-size: 18px;
+}
+
+.fit {
+    width: 27vw;
+    height: auto;
+    font-size: 18px;
+}
+
+.trapecioCont {
+    position:fixed; 
+    right: 0px; 
+    top: 0px;
+}
+
+#check {
+    display: none;
+}
+
+.open {
+    background-color: rgba(128, 0, 0, 0);
+    position: relative; bottom: -146px;
+    width: 2vw;
+    height: 15vw;
+    text-align: center;
+    cursor: pointer;
+}
+
+.sidebarMenu {
+    right: -31vw;
+}
+
+.form-check-input:checked {
+    background-color: #52a295;
+    border-color: #468d81;
+}
+
+.fotoCart {
+    height: 34px;
+    width: auto;
+    margin-bottom: 4px;
+    border: 1px solid #31665d;
+    border-radius: 2px;
+}
+
+
+
+.cartItem:hover {
+    border: 3px solid #52a295;
+    border-radius: 4px;
+    background-color: #7fc4b8;
+}
+
+.mtop {
+    margin-top: 140px;
+}
+
+.cartLine {
+    width: 97.5%;
+    padding: 1px;
+}
+
+.endCartLine {
+    width: 97.5%;
+}

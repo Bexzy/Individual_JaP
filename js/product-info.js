@@ -41,31 +41,31 @@ document.addEventListener("DOMContentLoaded", async () => {
     <div class="row flex-nowrap">
         <div class="col-md-5" style="height: 600px; width: ;">
             <div class="pb-3">
-            <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active" data-bs-interval="10000">
-                    <img src="${itemData.images[0]}" class="d-block star fotoMain">
-                </div>
-                <div class="carousel-item" data-bs-interval="2000">
-                    <img src="${itemData.images[1]}" class="d-block star fotoMain">
-                </div>
-                <div class="carousel-item">
-                    <img src="${itemData.images[2]}" class="d-block star fotoMain">
-                </div>
-                <div class="carousel-item">
-                    <img src="${itemData.images[3]}" class="d-block star fotoMain">
+                <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" data-bs-interval="10000">
+                            <img src="${itemData.images[0]}" class="d-block star fotoMain">
+                        </div>
+                        <div class="carousel-item" data-bs-interval="2000">
+                            <img src="${itemData.images[1]}" class="d-block star fotoMain">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="${itemData.images[2]}" class="d-block star fotoMain">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="${itemData.images[3]}" class="d-block star fotoMain">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-    </div>
             <div class="row">
                 <div class="col-md-4"><img src="${itemData.images[1]}" alt="" class="sub foto"></div>
                 <div class="col-md-4"><img src="${itemData.images[2]}" alt="" class="sub foto"></div>
@@ -95,6 +95,22 @@ document.addEventListener("DOMContentLoaded", async () => {
             <br>
             <div class="desc" style="hight: 200px; padding-bottom: 70px;">
                 ${itemData.description}
+            </div>
+            <br>
+            <div>
+                <button class="btn btn-success w-auto fs-2 fw-bold" style="margin-left: 0vw; margin-top: 4vh;" onclick="buyItem(${itemData.id})">Añadir al Carrito</button>
+                <select class="form-select mb-3" aria-label=".form-select-lg example" id="buyAmount">
+                    <option value="1" selected>1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
             </div>
         </div>
     </div>
@@ -299,3 +315,43 @@ botonComentar.addEventListener("click", () => {
     });
 }
 });
+
+
+
+
+
+/*  Define carrito y carga los productos en él desde el localStorage */
+var carrito = [];
+
+document.addEventListener("DOMContentLoaded",()=> {
+    if (localStorage.getItem("cart") != null) {
+        carrito = JSON.parse(localStorage.getItem("cart"))
+    }
+});
+
+
+/* Botón de Compra */
+function buyItem(idP) {
+    let cant = document.getElementById("buyAmount").value;
+    let item = JSON.stringify(carrito)
+    var index = carrito.map(producto => producto.id).indexOf(idP)
+
+    /* Si el carrito está vacio, solo coloca el producto */
+    if (localStorage.getItem("cart") == null) {
+        carrito.push({id: idP, amount: cant})
+        localStorage.setItem("cart", JSON.stringify(carrito))
+    } else /* Si existen productos en el carrito pero no se encuentra el producto actual este se añade al carrito */
+        if (carrito[index] == undefined) {
+            carrito.push({id: idP, amount: cant})
+            localStorage.setItem("cart", JSON.stringify(carrito))
+        } else { /* Si el producto actual existe en el carrito se le suma a este la cantidad a adicional a comprar */
+            carrito.forEach(element => {
+                if (element.id == idP) {
+                    element.amount = JSON.parse(element.amount) + JSON.parse(cant)
+                    }
+                });
+            localStorage.setItem("cart", JSON.stringify(carrito))
+        }
+    /* Te redirije a el carrito una vez añadido el producto */
+        window.location = "cart.html"
+}

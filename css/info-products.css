@@ -159,3 +159,27 @@ body {
     border-color: #48867d;
     color: black;
 }
+
+.form-select {
+    border: 2px solid #52a295;
+    background-color: #bcf5eb;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    position: absolute;
+    width: 7%;
+    height: 6.5%;
+    top: 30.7vw;
+    right: 32vw;
+}
+
+.btn-success {
+    border: 2px solid #478f83;
+    background-color: #52a295;
+}
+
+.btn-success:hover {
+    border: 2px solid #278657;
+    background-color: #31a36a;
+}
+
