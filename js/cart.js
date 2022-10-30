@@ -49,33 +49,6 @@ async function getData(url) {
 };
 
 
-/* URL del carrito al cual debemos de realizar la petición */
-const carrito = "https://japceibal.github.io/emercado-api/user_cart/25801.json"
-
-/* Genera el DOM del usuario al que tenemos que hacer la petición de muestra */
-document.addEventListener("DOMContentLoaded", async () => {
-    const randomUserCart = await getData(carrito);
-    const randomUserCartData = await randomUserCart.articles
-    console.log(randomUserCartData);
-
-    const cartHTML = document.getElementById("carro");
-
-
-    cartHTML.innerHTML += 
-    `
-    <div class="row cartItem" id="${randomUserCartData[0].id}" onclick="showInfo(${randomUserCartData[0].id})">
-        <div class="col-1 mt-1 text-center"><img src="${randomUserCartData[0].image}" class="fotoCart" alt=""></div>
-        <div class="col-3 mt-1 text-center">${randomUserCartData[0].name}</div>
-        <div class="col-2 mt-1 text-center">${randomUserCartData[0].unitCost} ${randomUserCartData[0].currency}</div>
-        <div class="col-2 mt-1 text-center" id="${randomUserCartData[0].id}cant">${randomUserCartData[0].count}</div>
-        <div class="col-3 mt-1 text-center"><span id="${randomUserCartData[0].id}total">${randomUserCartData[0].count * randomUserCartData[0].unitCost}</span> ${randomUserCartData[0].currency}</div>
-        <div class="col-1 text-center btn btn-outline-danger w-auto pb-2 pe-3 ps-3 pt-2"><i class="fa-solid fa-trash"></i></div>
-    </div>
-    <hr class="mb-2 mt-2 cartLine">
-    `
-});
-
-
 
 
 /* Funcion encargada de generar la información del menú lateral */
@@ -186,19 +159,22 @@ function changeAmount(idP, cost) {
 
     /* Actualiza los precios en función de la cantidad seleccionada */
     let totalCostUSD = 0;
-    let totalCostUYU = 0;
+
+    let totalCostUYU = totalCostUSD * 40;
+
 
     amountCarrito.forEach(async element => {
         let prodData = await getData("https://japceibal.github.io/emercado-api/products/" + element.id + ".json")
         
         if (prodData.currency == "USD" && element.amount > 0) {
             totalCostUSD += prodData.cost * JSON.parse(element.amount)
-            document.getElementById("totalCostUSD").innerHTML = totalCostUSD + " USD"
+
         } else
             if (prodData.currency == "UYU" && element.amount > 0) {
-                totalCostUYU += prodData.cost * JSON.parse(element.amount)
-                document.getElementById("totalCostUYU").innerHTML = totalCostUYU + " UYU"
+                totalCostUSD += (prodData.cost * JSON.parse(element.amount)) * 0.025
             }
+        document.getElementById("totalCost").innerHTML = totalCostUSD.toFixed(2)
+
     });
 };
 
@@ -209,7 +185,9 @@ document.addEventListener("DOMContentLoaded", async ()=> {
     const cartHTML = document.getElementById("carro");
     let cantProd = 0;
     let totalCostUSD = 0;
-    let totalCostUYU = 0;
+
+    let totalCostUYU = totalCostUSD * 40;
+
 
 
 
@@ -236,15 +214,18 @@ document.addEventListener("DOMContentLoaded", async ()=> {
         cantProd += JSON.parse(element.amount)
         document.getElementById("totalProd").innerHTML = cantProd
 
-        /* Calcula la cantidad de productos total y su precio en USD o UYU */
+
+        /* Calcula la cantidad de productos total y su precio en USD */
         if (prodData.currency == "USD") {
             totalCostUSD += prodData.cost * element.amount
-            document.getElementById("totalCostUSD").innerHTML = totalCostUSD + " USD" 
+            
         }
         if (prodData.currency == "UYU") {
-            totalCostUYU += prodData.cost * element.amount
-            document.getElementById("totalCostUYU").innerHTML = totalCostUYU + " UYU" 
+            totalCostUSD += (prodData.cost * element.amount) * 0.025
+            
         }
+        document.getElementById("totalCost").innerHTML = totalCostUSD.toFixed(2)
+
     });
 
 });
@@ -283,39 +264,286 @@ async function removeItem(idP) {
     open.forEach(element => {
         element.classList.add("sidebarMenu");
     });
-    firstCol.classList.remove("col-2")
-    firstCol.classList.add("col-3")
-    secondCol.classList.remove("col-4")
-    secondCol.classList.add("col-3")
+
+    firstCol.classList.replace("col-2", "col-3")
+    secondCol.classList.replace("col-4", "col-3")
 
 
-    /* Calcula nuevamente los costos debido a la falta del producto */
     let totalCostUSD = 0;
-    let totalCostUYU = 0;
+    let totalCostUYU = totalCostUSD * 40;
+
 
     amountCarrito.forEach(async element => {
         let prodData = await getData("https://japceibal.github.io/emercado-api/products/" + element.id + ".json")
 
         if (prodData.currency == "USD" && element.amount > 0) {
             totalCostUSD += prodData.cost * JSON.parse(element.amount)
-            document.getElementById("totalCostUSD").innerHTML = totalCostUSD + " USD"
+
         } else
             if (prodData.currency == "UYU" && element.amount > 0) {
-                totalCostUYU += prodData.cost * JSON.parse(element.amount)
-                document.getElementById("totalCostUYU").innerHTML = totalCostUYU + " UYU"
+                totalCostUSD += (prodData.cost * JSON.parse(element.amount)) * 0.025
             }
+        document.getElementById("totalCost").innerHTML = totalCostUSD.toFixed(2)
+
     });
 
-    /* Elimina los precios totales si ya no son necesarios */
+        /* Elimina los precios totales si ya no son necesarios */
     if (totalCostUSD == 0) {
-        document.getElementById("totalCostUSD").innerHTML = "";
-    }
-    if (totalCostUYU == 0) {
-        document.getElementById("totalCostUYU").innerHTML = "";
+        document.getElementById("totalCost").innerHTML = "0";
     }
     if (localStorage.getItem("cart") === '[]') {
-        document.getElementById("totalCostUYU").innerHTML = "";
-        document.getElementById("totalCostUSD").innerHTML = "";
-        document.getElementById("totalProd").innerHTML = "";
-    }   
+        document.getElementById("totalCost").innerHTML = "0";
+        document.getElementById("totalProd").innerHTML = "0";
+    } 
+
 };
+
+
+
+
+
+/* Funcion encargada del funcionamiento del checkbox custom y su escucha debajo */
+function checkIcon(id) {
+        switch (id) {
+            case "fexpress":
+                document.getElementById("ifexpress").classList.toggle("fa-square")
+                document.getElementById("ifexpress").classList.toggle("fa-square-check")
+                document.getElementById("ifpremium").classList.replace("fa-square-check", "fa-square")
+                document.getElementById("ifstandard").classList.replace("fa-square-check", "fa-square")
+            break;
+            case "fpremium":
+                document.getElementById("ifpremium").classList.toggle("fa-square")
+                document.getElementById("ifpremium").classList.toggle("fa-square-check")
+                document.getElementById("ifexpress").classList.replace("fa-square-check", "fa-square")
+                document.getElementById("ifstandard").classList.replace("fa-square-check", "fa-square")
+            break;
+            case "fstandard":
+                document.getElementById("ifstandard").classList.toggle("fa-square")
+                document.getElementById("ifstandard").classList.toggle("fa-square-check")
+                document.getElementById("ifexpress").classList.replace("fa-square-check", "fa-square")
+                document.getElementById("ifpremium").classList.replace("fa-square-check", "fa-square")
+            break;
+        }
+}
+
+/* Calcula el costo de envio según el método elegido */
+function shippingCost(id, actualPrice) {
+            switch (id) {
+                case "fexpress":
+                    actualPrice = (actualPrice * 0.08)
+                    return actualPrice
+                case "fpremium":
+                    actualPrice = (actualPrice * 0.15)
+                    return actualPrice
+                case "fstandard":
+                    actualPrice = (actualPrice * 0.05)
+                    return actualPrice
+    }
+}
+
+
+
+const checkboxes = [(document.getElementById("fpremium")),(document.getElementById("fexpress")), (document.getElementById("fstandard"))]
+/* Genera */
+checkboxes.forEach(element => {
+    element.addEventListener("change", ()=> {
+        let actualPrice = document.getElementById("totalCost").innerHTML
+
+        checkIcon(element.id)
+        document.getElementById("shipPrice").innerHTML = (shippingCost(element.id, JSON.parse(actualPrice))).toFixed(2)
+        document.getElementById("totalPrice").innerHTML = (shippingCost(element.id, JSON.parse(actualPrice)) + JSON.parse(actualPrice)).toFixed(2)
+        
+    });
+});
+
+/* Se encarga de modificar la divisa y precio al usar el swap */
+document.getElementById("USDtoUYU").addEventListener("change", () => {
+    if (document.getElementById("USDtoUYU").checked) {
+        document.getElementById("totalCost").innerHTML = ((document.getElementById("totalCost").innerHTML) * 40).toFixed(2)
+        document.getElementById("currencyCostHTML").innerHTML = " UYU"
+        document.getElementById("shipPrice").innerHTML = ((document.getElementById("shipPrice").innerHTML) * 40).toFixed(2)
+        document.getElementById("currencyShipHTML").innerHTML = " UYU"
+        document.getElementById("totalPrice").innerHTML = ((document.getElementById("totalPrice").innerHTML) * 40).toFixed(2)
+        document.getElementById("currencyPriceHTML").innerHTML = " UYU"
+    } else {
+        document.getElementById("totalCost").innerHTML = ((document.getElementById("totalCost").innerHTML) * 0.025).toFixed(2)
+        document.getElementById("currencyCostHTML").innerHTML = " USD"
+        document.getElementById("shipPrice").innerHTML = ((document.getElementById("shipPrice").innerHTML) * 0.025).toFixed(2)
+        document.getElementById("currencyShipHTML").innerHTML = " USD"
+        document.getElementById("totalPrice").innerHTML = ((document.getElementById("totalPrice").innerHTML) * 0.025).toFixed(2)
+        document.getElementById("currencyPriceHTML").innerHTML = " USD"
+    }
+});
+
+
+var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
+    keyboard: false
+})
+
+var creditCardModal = new bootstrap.Modal(document.getElementById('creditCardModal'), {
+    keyboard: false
+})
+
+var bankTransfModal = new bootstrap.Modal(document.getElementById('bankTransfModal'), {
+    keyboard: false
+})
+
+/* Define los parametros de verificación */
+function verify(id) {
+    const item = document.getElementById(id);
+
+    switch (id) {
+        case "street":
+        case "number":
+        case "corner":
+        case "creditCardName":
+        case "creditCardNum":
+        case "creditCardSecCode":
+        case "creditCardDate":
+        case "bankName":
+        case "bankNum":
+            return (item.value === "")
+    }
+}
+
+let selectedMethod = undefined 
+/* Función final, se encarga de la validación de datos en general y de brindar la clase a quien es debido. Tras el primer click 
+añade un excucha a todos los input para que se verifiquen a ellos mismos */
+function escuchar() {
+    document.querySelectorAll(".escucha").forEach(element => {
+        if (verify(element.id)) {
+            element.classList.add("is-invalid")
+        } else {
+            element.classList.add("is-valid")
+        }
+
+        element.addEventListener("keyup", () => {
+            if (verify(element.id)) {
+                element.classList.replace("is-valid", "is-invalid")
+            } else {
+                element.classList.replace("is-invalid", "is-valid")
+            }
+        });
+
+    });
+
+    if (!(document.getElementById("fstandard").checked || document.getElementById("fexpress").checked || document.getElementById("fpremium").checked)) { 
+        document.getElementById("formShipping").classList.add("is-invalid")
+    }
+
+    const shipping = [document.getElementById("fstandard"), document.getElementById("fexpress"), document.getElementById("fpremium")]
+
+    shipping.forEach(element => {
+        element.addEventListener("change", () => {
+            if (element.checked == true) { 
+                document.getElementById("formShipping").classList.replace("is-invalid", "is-valid") 
+            }
+        });
+    });
+
+    if (selectedMethod == undefined) {
+        document.getElementById("payMethod").classList.add("is-invalid")
+    } else 
+        if (selectedMethod == "tarjetaCredito") {
+            document.querySelectorAll(".tarjeta").forEach(element => {
+                if (verify(element.id)) {
+                    element.classList.add("is-invalid")
+                    document.getElementById("paySelectedMethod").classList.add("is-invalid")
+                } else {
+                    element.classList.add("is-valid")
+                }
+
+                element.addEventListener("keyup", () => {
+                    if (verify(element.id)) {
+                        element.classList.replace("is-valid", "is-invalid")
+                        document.getElementById("paySelectedMethod").classList.add("is-invalid")
+                    } else {
+                        element.classList.replace("is-invalid", "is-valid")
+                    }
+                });
+
+                element.addEventListener("keyup", () => {
+                    if (document.getElementById("creditCardName").value    != "" && 
+                        document.getElementById("creditCardNum").value     != "" && 
+                        document.getElementById("creditCardSecCode").value != "" && 
+                        document.getElementById("creditCardDate").value    != "") {
+                            document.getElementById("paySelectedMethod").classList.remove("is-invalid")
+                        }
+                    })
+
+            });
+
+
+
+    } else 
+        if (selectedMethod == "transfBancaria") {
+            document.querySelectorAll(".transferencia").forEach(element => {
+                if (verify(element.id)) {
+                    element.classList.add("is-invalid")
+                    document.getElementById("paySelectedMethod").classList.add("is-invalid")
+                } else {
+                    element.classList.add("is-valid")
+                }
+
+                element.addEventListener("keyup", () => {
+                    if (verify(element.id)) {
+                        element.classList.replace("is-valid", "is-invalid")
+                        document.getElementById("paySelectedMethod").classList.add("is-invalid")
+                    } else {
+                        element.classList.replace("is-invalid", "is-valid")
+                    }
+                });
+            
+                element.addEventListener("keyup", () => {
+                    if (document.getElementById("bankName").value != "" && 
+                        document.getElementById("bankNum").value  != "") {
+                            document.getElementById("paySelectedMethod").classList.remove("is-invalid")
+                        }
+                    })
+
+            });
+    }
+};
+
+/* Sección de tarjeta de credito en el modal */
+function creditCard() {
+    document.getElementById("paySelectedMethod").innerHTML = 'Tarjeta de Credito<span class="link-primary ms-2 text-decoration-underline fs-6" onclick="creditCardModal.toggle()">Editar datos</span>'
+    document.getElementById("payMethod").innerHTML = ""
+    selectedMethod = "tarjetaCredito"
+    if (document.getElementById("payMethod").classList.contains("is-invalid")) {
+        document.getElementById("payMethod").classList.remove("is-invalid")
+    }
+    document.querySelectorAll(".transferencia").forEach(element => {
+        if (document.getElementById("paySelectedMethod").classList.contains("is-invalid")) {
+            document.getElementById("paySelectedMethod").classList.replace("is-invalid", "is-valid")
+        }
+    });
+};
+
+
+/* Sección de transferencia bancaria en el modal */
+function bankTrans() {
+    document.getElementById("paySelectedMethod").innerHTML = 'Transferencia Bancaria<span class="link-primary ms-2 text-decoration-underline fs-6" onclick="bankTransfModal.toggle()">Editar datos</span>'
+    document.getElementById("payMethod").innerHTML = ""
+    selectedMethod = "transfBancaria"
+    if (document.getElementById("payMethod").classList.contains("is-invalid")) {
+        document.getElementById("payMethod").classList.remove("is-invalid")
+    }
+    document.querySelectorAll(".tarjeta").forEach(element => {
+        if (document.getElementById("paySelectedMethod").classList.contains("is-invalid")) {
+            document.getElementById("paySelectedMethod").classList.replace("is-invalid", "is-valid")
+        }
+    });
+};
+
+
+function finishCart() {
+    escuchar()
+    if (document.querySelectorAll(".is-invalid").length == 0) {
+        modalSuccess.toggle()
+    }
+}
+
+var modalSuccess = new bootstrap.Modal(document.getElementById('modalSuccess'), {
+    keyboard: false
+})

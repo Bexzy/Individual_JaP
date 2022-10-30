@@ -9,12 +9,14 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+
   <link rel="stylesheet" href="css/cart.css">
 
     <script src="https://kit.fontawesome.com/efa6adbe4b.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>  
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
 </head>
 
 <body>
@@ -157,6 +159,380 @@
     
   </main>
 
+  <footer class="text-muted">
+    <div class="container">
+      <p class="float-end">
+        <a href="#">Volver arriba</a>
+      </p>
+      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a> -
+        2022</p>
+      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+    </div>
+
+  <link rel="stylesheet" href="css/cart.css">
+
+  <script src="https://kit.fontawesome.com/efa6adbe4b.js" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  
+
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1 flex-nowrap" style="height: 60px;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="main.html">
+        <img src="img/small-logo.png" class="me-2" height="35" alt="MDB Logo" loading="lazy" />
+      </a>
+      <div class="nav-item">
+        <a class="text-white-50" href="categories.html">Categorías</a>
+      </div>
+      <div class="nav-item">
+        <a class="text-white-50" href="sell.html">Vender</a>
+      </div>
+      <div style="height: 130px;">
+        <div class="container">
+          <div class="dropdown mt-5">
+            <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" id="user">
+              <i class="fa-solid fa-user-large"></i>
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="my-profile.html">&nbsp;<i class="fa-solid fa-user"></i> Perfil </a>
+              <a class="dropdown-item" href="cart.html"><i class="fa-solid fa-cart-shopping"></i> Carrito </a>
+              <a class="dropdown-item" href="sell.html"> <i class="fa-solid fa-tags"></i> Mis Productos </a>
+              <a class="dropdown-item" href="index.html"> <i class="fa-solid fa-power-off"></i> Desconectarse </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+
+  <main>
+    <div class="row">
+      <div class="col-3" id="firstCol"></div>
+      <div class="col-6">
+        <div class="text-center h1 m-5">Carrito de Compras</div>
+        <div class="row shadow p-3 borderRadius">
+        <div class="fs-2 pb-3 fw-light">Articulos a Comprar</div>
+
+        
+
+          <div class="row">
+            <div class="col-1 fw-bold text-center">Img</div>
+            <div class="col-3 fw-bold text-center">Nombre</div>
+            <div class="col-2 fw-bold text-center">Costo</div>
+            <div class="col-2 fw-bold text-center">Cantidad</div>
+            <div class="col-3 fw-bold text-center">Subtotal</div>
+            <div class="col-1 fw-bold text-center"></div>
+            <hr class="mb-2 mt-2">
+          </div>
+
+          <div class="row" id="carro">
+            <!-- Productos Aquí -->
+          </div>
+          <div class="row mt-4">
+            <div class="col-11 fw-bold fs-6 text-end greenTxt">
+              Precios en UYU
+            </div>
+            <label class="switch col-1">
+              <input type="checkbox" id="USDtoUYU">
+              <span class="slider round"></span>
+            </label>
+          </div>
+          <div class="col mt-2">
+            <div class="row col border-total1">
+              <div class="col-2 fw-bold text-start"><span id="totalProd"></span> Productos</div>
+              <div class="col-5 fw-bold text-end"></div>
+              <div class="col-5 text-end"><span class="fw-bold">Subtotal </span>&nbsp;&nbsp;&nbsp;<span class="" id="totalCost"> </span><span id="currencyCostHTML"> USD</span></div>
+              <div class="fw-light">Costo unitario del producto</div>
+            </div>
+            <div class="row col border-total2">
+              <div class="col-2 fw-bold text-start">Costo de envio</div>
+              <div class="col-7 fw-bold text-center"></div>
+              <div class="col-3 text-end"><span id="shipPrice">0</span><span id="currencyShipHTML"> USD</span></div>
+              <div class="fw-light">Según el tipo de envio</div>
+            </div>
+            <div class="row border-total3">
+              <div class="col-2 fw-bold text-start">Total</div>
+              <div class="col-7 fw-bold text-center"></div>
+              <div class="col-3 text-end"><span id="totalPrice">0</span><span id="currencyPriceHTML"> USD</span></div>
+              <div class="fw-light">Coste total</div>
+            </div>
+          </div>
+          <hr class="mb-2 mt-4">
+        </div>
+
+
+        <div class="shadow p-3 row borderRadius">
+          <div class="fs-3 pb-3 fw-light pt-2">Tipo de Envio</div>
+          <form action="" aria-describedby="shippingInvalid" class="" id="formShipping">
+            <input class="form-check-input" type="radio" id="fpremium" name="envio" value="fpremium">
+            <label class="form-check-label" for="fpremium"><i class="fa-regular fa-square sendCheckbox"
+                id="ifpremium"></i> Premiun 2 a 5 días (15%)</label>
+            <br>
+            <input class="form-check-input" type="radio" id="fexpress" name="envio" value="fexpress">
+            <label class="form-check-label" for="fexpress"><i class="fa-regular fa-square sendCheckbox"
+                id="ifexpress"></i> Express 5 a 8 días (8%)</label>
+            <br>
+            <input class="form-check-input" type="radio" id="fstandard" name="envio" value="fstandrard">
+            <label class="form-check-label" for="fstandard"><i class="fa-regular fa-square sendCheckbox"
+                id="ifstandard"></i> Standard 12 a 15 días (5%)</label>
+          </form>
+          <div class="invalid-feedback" id="shippingInvalid">
+            Por favor seleccione un tipo de envio.
+          </div>
+          <hr class="mb-2 mt-4">
+        </div>
+
+        <div class="shadow p-3 row borderRadius">
+          <div class="fs-3 pb-3 pt-4 fw-light">Dirección de Envio</div>
+          <form action="" class="mb-4">
+            <div class="input-group mb-3">
+              <span class="input-group-text">Calle</span>
+              <input type="text" class="form-control p-2 escucha" id="street" placeholder="Calle de residencia" aria-describedby="streetInvalid">
+              <div class="invalid-feedback" id="streetInvalid">
+                Debe ingresar su domicilio de residencia.
+              </div>
+              <span class="input-group-text ms-2"
+                style="border-radius: 4px 0px 0px 4px;">Número</span>
+              <input type="text" class="form-control p-2 escucha" id="number" placeholder="Número de telefono móvil" aria-describedby="numberInvalid">
+              <div class="invalid-feedback" id="numberInvalid">
+                Debe ingresar número de telefono.
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <span class="input-group-text">Esquina</span>
+              <input type="text" class="form-control p-2 escucha" id="corner" placeholder="Esquina" aria-describedby="cornerInvalid">
+              <div class="invalid-feedback" id="cornerInvalid">
+                Debe la esquina de su residencia.
+              </div>
+            </div>
+            <div class="input-group">
+              <span class="input-group-text">Detalles especiales <br> de entrega</span>
+              <textarea class="form-control p-2" aria-label="Detalles especiales" placeholder="¿Algún detalle especial que necesitemos saber? (Apartamento, Piso, Planta, Lugar de Entrega)" rows="3"></textarea>
+            </div>
+          </form>
+          <hr class="mb-2">
+        </div>
+
+
+
+
+        <div class="shadow p-3 row borderRadius">
+          <div class="fs-3 pb-2 pt-2 fw-light">Forma de Pago</div>
+            <div class="link-primary ms-2 text-decoration-underline" onclick="myModal.toggle()" aria-describedby="payMethodInvalid" id="payMethod">Elegir un método de pago</div>
+            <div class="fs-5 fw-light" id="paySelectedMethod" aria-describedby="payMethodInvalid"></div>
+            <div id="payMethodInvalid" class="invalid-feedback ms-2">
+              Debe elegir un método de pago.
+            </div>
+
+
+            <div class="modal" tabindex="-1" id="myModal">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">                        
+                      <h5 class="modal-title">Eliga un método de pago</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body row payments">
+                      <!-- Boton Modal 1 (Tarjeta de Crédito) -->
+                      <button class="btn btn-outline-success payOption1 col-6 p-0" onclick="creditCardModal.toggle(), myModal.toggle(), creditCard()">
+                        <div class="col">
+                          <div class="fw-light fs-4">
+                            Tarjeta de Crédito
+                          </div>
+                          <div class="payIcon">
+                            <i class="fa-regular fa-credit-card"></i>
+                          </div>
+                        </div>
+                      </button>
+                      <!-- Boton Modal 2 (Transferencia Bancaria) -->
+                      <button class="btn btn-outline-success payOption2 col-6 p-0" onclick="bankTransfModal.toggle(), myModal.toggle(), bankTrans()">
+                        <div class="col">
+                          <div class="fw-light fs-4">
+                            Transferencia Bancaria
+                          </div>
+                          <div class="payIcon">
+                            <i class="fa-solid fa-building-columns"></i>
+                          </div>
+                        </div>
+                      </button>
+
+                    </div>
+                    <div class="modal-footer">
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+          <hr class="mb-2 mt-4">
+        </div>
+
+        <div class="shadow p-3 row borderRadius pt-5 pb-4">
+          <button class="btn btn-success buyButton shadow" onclick="finishCart()">
+            Finalizar Compra
+          </button>
+        </div>
+
+
+
+<!-- Modal 1 (Tarjeta de Crédito) -->
+
+            <div class="modal" tabindex="-1" id="creditCardModal">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">   
+                      <button type="button" class="btn link-secondary" aria-label="Close" onclick="creditCardModal.toggle(), myModal.toggle()"><i class="fa-solid fa-arrow-left"></i></button>                     
+                      <h5 class="modal-title">Tarjeta de Crédito</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body row payments">
+                      
+
+                      <form action="" class="mb-4">
+                        <div class="input-group mb-3">
+                          <span class="input-group-text" id="creditCardNameLabel">Nombre Completo</span>
+                          <input type="text" class="form-control p-2 tarjeta" placeholder="ej. Hugo Martinez Martinez" aria-label="creditCardNameLabel" aria-describedby="creditCardNameInvalid" id="creditCardName">
+                          <div class="invalid-feedback" id="creditCardNameInvalid">Debe ingresar el nombre que aparece en su tarjeta.</div>
+                        </div>
+                        <div class="input-group mb-3">
+                          <span class="input-group-text" id="creditCardNumLabel">Número de Tarjeta</span>
+                          <input type="text" class="form-control p-2 tarjeta" placeholder="ej. 1234-5678-9012-3456" aria-label="creditCardNumLabel" aria-describedby="creditCardNumInvalid" id="creditCardNum">
+                          <div class="invalid-feedback" id="creditCardNumInvalid">Debe ingresar su número de tarjeta.</div>
+                        </div>
+                        <div class="input-group">
+                          <span class="input-group-text" id="creditCardSecCodeLabel"
+                          style="border-radius: 4px 0px 0px 4px;">Código de Seg.</span>
+                          <input type="text" class="form-control p-2 tarjeta" placeholder="ej. 123" aria-label="creditCardSecCodeLabel" aria-describedby="creditCardSecCodeInvalid" id="creditCardSecCode">
+                          <div class="invalid-feedback" id="creditCardSecCodeInvalid">Debe ingresar su código de seguridad</div>
+                          <span class="input-group-text ms-2" id="creditCardDateLabel" style="border-radius: 4px 0px 0px 4px;">mm/aa</span>
+                          <input type="text" class="form-control p-2 tarjeta" placeholder="ej. 08/02" aria-label="creditCardDateLabel" aria-describedby="creditCardDateInvalid" id="creditCardDate">
+                          <div class="invalid-feedback" id="creditCardDateInvalid">Deeb ingresar la fecha de vencimiento de su tarjeta</div>
+                        </div>
+                      </form>
+
+
+                    </div>
+                    <div class="modal-footer">
+                      <button class="btn btn-primary float-end" onclick="creditCardModal.toggle()">Listo</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+<!-- Modal 2 (Transf. Bancaria) -->
+
+              <div class="modal" tabindex="-1" id="bankTransfModal">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">  
+                      <button type="button" class="btn link-secondary" aria-label="Close" onclick="bankTransfModal.toggle(), myModal.toggle()"><i class="fa-solid fa-arrow-left"></i></button>
+                      <h5 class="modal-title">Transferencia Bancaria</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    
+
+                  <form action="" class="mb-4">
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" id="bankNameLabel">Nombre Completo</span>
+                      <input type="text" class="form-control p-2 transferencia" placeholder="ej. Hugo Martinez Martinez" aria-label="bankNameLabel" aria-describedby="bankNameInvalid" id="bankName">
+                      <div class="invalid-feedback" id="bankNameInvalid">Debe ingresar el nombre que aparece en su cuenta bancaria.</div>
+                    </div>
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" id="bankNumLabel">Núm. de la Cuenta</span>
+                      <input type="text" class="form-control p-2 transferencia" placeholder="ej. 1234-5678-9012" aria-label="bankNumLabel" aria-describedby="bankNumInvalid" id="bankNum">
+                      <div class="invalid-feedback" id="bankNumInvalid">Debe ingresar su número de cuenta bancaria</div>
+                    </div>
+                  </form>
+
+                    </div>
+                    <div class="modal-footer">
+                      <button class="btn btn-primary float-end" onclick="bankTransfModal.toggle()">Listo</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div id="modalSuccess" class="modal">
+                  <div class="modal-dialog">
+                      <div class="modal-content">
+                          <div class="modal-header" style="height: 10px;">
+                              <button type="button" class="close btn-close" onclick="modalSuccess.toggle()" aria-hidden="true"></button>
+                          </div>
+                          <div class="modal-body text-center fs-5 fw-bolder">
+                              ¡Has comprado con éxito!
+                          </div>
+                      </div> 
+                  </div>
+              </div>
+
+
+
+
+
+      </div>
+
+      <!-- Menú Lateral -->
+      <div class="col-3" id="secondCol">
+
+        <div class="trapecio1 sidebarMenu" id="trap1">
+          <div class="trapecio2 sidebarMenu" id="trap2">
+            <div class="trapecio3 sidebarMenu" id="trap3">
+              <div class="trapecio4 sidebarMenu" id="trap4">
+
+                <input type="checkbox" id="check">
+                <div class="">
+                  <label for="check" class="open">
+
+                  </label>
+                </div>
+
+                <div class="trapecioCont sidebarMenu" id="trap5">
+
+
+
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+      </div>
+
+
+
+  </main>
+
+
+  <!-- Footer -->
+  <footer class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5" style="background-color: #229fbc;">
+
+    <p>
+      Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank"
+        style="color: white;">Jovenes a Programar</a> -
+      2022 | Clickea <a target="_blank" href="Letra.pdf" style="color: white;">aquí</a> para descargar la letra del
+      obligatorio.
+    </p>
+    <p>
+      <a href="#" style="color: white;">Volver arriba</a>
+    </p>
+
+
+  </footer>
+
+
 
       <!-- Footer -->
       <footer class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5" style="background-color: #229fbc;">
@@ -170,6 +546,7 @@
         </p>
   
         </footer>
+
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
