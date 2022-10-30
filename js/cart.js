@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
     document.addEventListener("DOMContentLoaded", ()=> {
 
             /* Imprime el usuario en el navbar */
@@ -161,18 +159,22 @@ function changeAmount(idP, cost) {
 
     /* Actualiza los precios en función de la cantidad seleccionada */
     let totalCostUSD = 0;
+
     let totalCostUYU = totalCostUSD * 40;
+
 
     amountCarrito.forEach(async element => {
         let prodData = await getData("https://japceibal.github.io/emercado-api/products/" + element.id + ".json")
         
         if (prodData.currency == "USD" && element.amount > 0) {
             totalCostUSD += prodData.cost * JSON.parse(element.amount)
+
         } else
             if (prodData.currency == "UYU" && element.amount > 0) {
                 totalCostUSD += (prodData.cost * JSON.parse(element.amount)) * 0.025
             }
         document.getElementById("totalCost").innerHTML = totalCostUSD.toFixed(2)
+
     });
 };
 
@@ -183,7 +185,9 @@ document.addEventListener("DOMContentLoaded", async ()=> {
     const cartHTML = document.getElementById("carro");
     let cantProd = 0;
     let totalCostUSD = 0;
+
     let totalCostUYU = totalCostUSD * 40;
+
 
 
 
@@ -210,6 +214,7 @@ document.addEventListener("DOMContentLoaded", async ()=> {
         cantProd += JSON.parse(element.amount)
         document.getElementById("totalProd").innerHTML = cantProd
 
+
         /* Calcula la cantidad de productos total y su precio en USD */
         if (prodData.currency == "USD") {
             totalCostUSD += prodData.cost * element.amount
@@ -220,6 +225,7 @@ document.addEventListener("DOMContentLoaded", async ()=> {
             
         }
         document.getElementById("totalCost").innerHTML = totalCostUSD.toFixed(2)
+
     });
 
 });
@@ -258,6 +264,7 @@ async function removeItem(idP) {
     open.forEach(element => {
         element.classList.add("sidebarMenu");
     });
+
     firstCol.classList.replace("col-2", "col-3")
     secondCol.classList.replace("col-4", "col-3")
 
@@ -265,11 +272,13 @@ async function removeItem(idP) {
     let totalCostUSD = 0;
     let totalCostUYU = totalCostUSD * 40;
 
+
     amountCarrito.forEach(async element => {
         let prodData = await getData("https://japceibal.github.io/emercado-api/products/" + element.id + ".json")
 
         if (prodData.currency == "USD" && element.amount > 0) {
             totalCostUSD += prodData.cost * JSON.parse(element.amount)
+
         } else
             if (prodData.currency == "UYU" && element.amount > 0) {
                 totalCostUSD += (prodData.cost * JSON.parse(element.amount)) * 0.025
@@ -538,4 +547,3 @@ function finishCart() {
 var modalSuccess = new bootstrap.Modal(document.getElementById('modalSuccess'), {
     keyboard: false
 })
->>>>>>> Stashed changes
