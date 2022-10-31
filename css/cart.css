@@ -37,8 +37,10 @@ body {
     border-bottom: 100px solid transparent;
     border-top: 100px solid transparent;
     border-right: 32vw solid #52a295;
+
     position: fixed;
     right: 0px;
+
     top: 100px;
 }
 
@@ -47,8 +49,10 @@ body {
     border-bottom: 270px solid transparent;
     border-top: 270px solid transparent;
     border-right: 33vw solid #468d81;
+
     position: fixed;
     right: 0px;
+
     top: 100px;
 }
 
@@ -57,8 +61,10 @@ body {
     border-bottom: 400px solid transparent;
     border-top: 400px solid transparent;
     border-right: 32.6vw solid #31665d;
+
     position: fixed;
     right: 0px;
+
     top: 110px;
 }
 
@@ -67,8 +73,10 @@ body {
     border-bottom: 100px solid transparent;
     border-top: 100px solid transparent;
     border-right: 31vw solid #7fc4b8;
-    position: fixed;
-    right: 0px;
+
+    position:fixed; 
+    right: 0px; 
+
     top: 125px;
 }
 
@@ -81,9 +89,11 @@ body {
 }
 
 .info {
+
     position: absolute;
     right: 30px;
     top: 240px;
+
 }
 
 .price {
@@ -104,8 +114,10 @@ body {
 }
 
 .trapecioCont {
+
     position: fixed;
     right: 0px;
+
     top: 0px;
 }
 
@@ -115,8 +127,10 @@ body {
 
 .open {
     background-color: rgba(128, 0, 0, 0);
+
     position: relative;
     bottom: -146px;
+
     width: 2vw;
     height: 15vw;
     text-align: center;
@@ -149,7 +163,10 @@ body {
 }
 
 .mtop {
+
     margin-top: 100px;
+
+
 }
 
 .cartLine {
@@ -159,6 +176,7 @@ body {
 
 .endCartLine {
     width: 97.5%;
+
 }
 
 .form-check-input {
@@ -315,4 +333,5 @@ input:checked+.slider:before {
 
 #modalSuccess {
     background-color: #2195f300;
+
 }
