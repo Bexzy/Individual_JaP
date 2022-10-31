@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
     document.addEventListener("DOMContentLoaded", ()=> {
 
             /* Imprime el usuario en el navbar */
@@ -538,4 +536,3 @@ function finishCart() {
 var modalSuccess = new bootstrap.Modal(document.getElementById('modalSuccess'), {
     keyboard: false
 })
->>>>>>> Stashed changes
