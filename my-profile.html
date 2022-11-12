@@ -8,6 +8,13 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link href="css/my-profile.css" rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/efa6adbe4b.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>  
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  
   <style>
     .bd-placeholder-img {
       font-size: 1.125rem;
@@ -27,46 +34,101 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
-    <div class="container">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav w-100 justify-content-between">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="categories.html">Categorías</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="sell.html">Vender</a>
-          </li>
-          <li class="nav-item">
-          </li>
-        </ul>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1 flex-nowrap" style="height: 60px;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="main.html">
+        <img
+          src="img/small-logo.png"
+          class="me-2"
+          height="35"
+          alt="MDB Logo"
+          loading="lazy"
+        />
+      </a>
+      <div class="nav-item">
+        <a class="text-white-50" href="categories.html">Categorías</a>
+      </div>
+      <div class="nav-item">
+        <a class="text-white-50" href="sell.html">Vender</a>
+      </div>
+        <div style="height: 130px;">
+          <div class="container">  
+            <div class="dropdown mt-5">  
+              <button type="button" class="btn btn-dark dropdown-toggle me-5" data-toggle="dropdown" id="user">  
+                <i class="fa-solid fa-user-large"></i>
+              </button>  
+              <div class="dropdown-menu">
+                  <a class="dropdown-item" href="my-profile.html">&nbsp;<i class="fa-solid fa-user"></i> Perfil </a>  
+                  <a class="dropdown-item" href="cart.html"><i class="fa-solid fa-cart-shopping"></i> Carrito </a> 
+                  <a class="dropdown-item" href="sell.html"> <i class="fa-solid fa-tags"></i> Mis Productos </a>   
+                  <a class="dropdown-item" href="index.html"> <i class="fa-solid fa-power-off"></i> Desconectarse </a>  
+              </div>  
+          </div>  
+        </div>  
       </div>
     </div>
   </nav>
-  <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+
+
+  <div class="row" style="margin-bottom: 190px;">
+    <div class="col-3"></div>
+
+
+    <div class="col-6">
+      <div class="row mt-3">
+        <div class="col-6 title">Perfil</div>
+        <div id="pfp" class="col-6 text-end"><img src="img/img_perfil.png" alt="" class="img" id="pic"></div>
       </div>
+      
+      <hr>
+      <!-- Formulario de datos de usuario -->
+      <form action="" class="row">
+        <div class="col-6">        
+          <label for="name" class="form-label">Primer Nombre *</label>
+          <input type="text" name="name" id="name" class="form-control verify">
+          <label for="surName" class="form-label">Primer Apellido *</label>
+          <input type="text" name="surname" id="surname" class="form-control verify">
+          <label for="email" class="form-label">E-Mail *</label>
+          <input type="text" name="email" id="email" class="form-control verify" readonly>
+          <label for="phone" class="form-label">Telefono de Contacto *</label>
+          <input type="text" name="phone" id="phone" class="form-control verify">
+        </div>
+        <div class="col-6">
+          <label for="secName" class="form-label">Segundo Nombre</label>
+          <input type="text" name="secName" id="secName" class="form-control">
+          <label for="secSurname" class="form-label">Segundo Apellido</label>
+          <input type="text" name="secSurname" id="secSurname" class="form-control">
+
+          <div class="card mt-4">
+            <label for="img" class="btn btn-success fs-5">Elegir foto de Perfil (PNG, JPG, JPEG)</label>
+            <input type="file" id="img" name="img" accept=".jpg, .jpeg, .png" multiple/>
+            <div id="preview">
+              <p class="p-1 text-center fs-6 mb-1">No hay ningún archivo seleccionado actualmente.</p>
+            </div>
+          </div>
+
+        </div>
+      </form>
+      <hr class="mt-3 mb-4">
+      <button class="btn btn-primary fs-5" onclick="verify()" id="saveBtn" disabled >Guardar cambios</button>
     </div>
-  </main>
-  <footer class="text-muted">
-    <div class="container">
-      <p class="float-end">
-        <a href="#">Volver arriba</a>
-      </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a> -
-        2022</p>
-      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
-    </div>
-  </footer>
+
+
+    <div class="col-3"></div>
+  </div>
+
+      <!-- Footer -->
+      <footer class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5" style="background-color: #229fbc;">
+      
+        <p>
+          Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank" style="color: white;">Jovenes a Programar</a> -
+          2022 | Clickea <a target="_blank" href="Letra.pdf" style="color: white;">aquí</a> para descargar la letra del obligatorio.
+        </p>
+        <p>
+          <a href="#" style="color: white;">Volver arriba</a>
+        </p>
+  
+        </footer>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/my-profile.js"></script>
