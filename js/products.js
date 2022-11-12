@@ -11,6 +11,7 @@ async function lista(url) {
     return data2.products
 };
 
+/* Maqueta de los productos */
 function getHTML(list) {
     return `
     <div class="list-group-item cursor-active sobre btnPers" style="border-color: #3b756c; margin: 2px;" id="${list.id}" onclick="setProdID(${list.id})">
@@ -73,7 +74,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
 
-
+/* Limpia los filtros acutales */
 limpiarFiltro.addEventListener("click", async () => {
     let maxFiltro = document.getElementById("maxFiltro").value;
     let minFiltro = document.getElementById("minFiltro").value;
@@ -119,7 +120,7 @@ precioUp.addEventListener("click", async () => {
     let priceOrderAsc = list.sort((a, b) => {
         if (a.cost > b.cost) {return 1}
         if (b.cost > a.cost) {return -1}
-    })
+    });
 
 
     document.getElementById("listaP").innerHTML = "";
@@ -127,8 +128,8 @@ precioUp.addEventListener("click", async () => {
     priceOrderAsc.forEach(element => {
         let pag = getHTML(element)
         document.getElementById("listaP").innerHTML += pag
-    })
-})
+    });
+});
 
 /* Filtra articulos de manera descendente según su precio */
 precioDown.addEventListener("click", async () => {
@@ -136,7 +137,7 @@ precioDown.addEventListener("click", async () => {
     let priceOrderDesc = list.sort((a, b) => {
         if (a.cost > b.cost) {return -1}
         if (b.cost > a.cost) {return 1}
-    })
+    });
 
 
     document.getElementById("listaP").innerHTML = "";
@@ -144,8 +145,8 @@ precioDown.addEventListener("click", async () => {
     priceOrderDesc.forEach(element => {
         let pag = getHTML(element)
         document.getElementById("listaP").innerHTML += pag
-    })
-})
+    });
+});
 
 /* Filtra los articulos en función de su cantidad de vendidos */
 filtroVentas.addEventListener("click", async () => {
@@ -153,7 +154,7 @@ filtroVentas.addEventListener("click", async () => {
     let sellOrder = list.sort((a, b) => {
         if (a.soldCount > b.soldCount) {return -1}
         if (b.soldCount > a.soldCount) {return 1}
-    })
+    });
 
 
     document.getElementById("listaP").innerHTML = "";
@@ -161,8 +162,8 @@ filtroVentas.addEventListener("click", async () => {
     sellOrder.forEach(element => {
         let pag = getHTML(element)
         document.getElementById("listaP").innerHTML += pag
-    })
-})
+    });
+});
 
 /* Filtra articulos en función de un buscador */
 buscador.addEventListener("keyup", async () => {
@@ -176,9 +177,9 @@ buscador.addEventListener("keyup", async () => {
         if (element.name.toLowerCase().includes(busqueda.toLowerCase()) || element.description.toLowerCase().includes(busqueda.toLowerCase())) {
         let pag = getHTML(element)
         document.getElementById("listaP").innerHTML += pag
-        }
-    })
-})
+        };
+    });
+});
 
 
 
@@ -192,11 +193,14 @@ function setProdID(id) {
 
 /* Trae e imprime el username en la navbar */
 document.addEventListener("DOMContentLoaded", () => {
-    const userHTML = document.getElementById("user");
-
-    userHTML.innerHTML += localStorage.getItem("user");
+    const userHTML = document.getElementById("user")
+    if (JSON.parse(localStorage.getItem("user")).name != undefined) {
+        userHTML.innerHTML += JSON.parse(localStorage.getItem("user")).name
+    } else {
+        userHTML.innerHTML += JSON.parse(localStorage.getItem("user")).email
+    };
 
     if (localStorage.getItem("user") == null) {
         window.location = "index.html"
-    }
+    };
 });

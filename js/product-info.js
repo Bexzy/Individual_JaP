@@ -24,7 +24,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     const main = document.getElementById("main");
     const commentsHTML = document.getElementById("comentarios");
     let media = 0;
-
     /* Carga comentarios del ususario */
     if (localStorage.getItem("UsuarioComment") != null) {
         userComments = JSON.parse(localStorage.getItem("UsuarioComment"));
@@ -233,9 +232,13 @@ function recargar(id) {
 
 /* Trae e imprime el username en la navbar */
 document.addEventListener("DOMContentLoaded", () => {
-    const userHTML = document.getElementById("user");
-
-    userHTML.innerHTML += localStorage.getItem("user");
+    /* Imprime el usuario en el navbar */
+    const userHTML = document.getElementById("user")
+    if (JSON.parse(localStorage.getItem("user")).name != undefined) {
+        userHTML.innerHTML += JSON.parse(localStorage.getItem("user")).name
+    } else {
+        userHTML.innerHTML += JSON.parse(localStorage.getItem("user")).email
+    }
 
         /* Chequea si el usuario está logeado, sino lo redirije al logIn */
         if (localStorage.getItem("user") == null) {

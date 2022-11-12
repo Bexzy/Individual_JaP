@@ -1,0 +1,45 @@
+body {
+    background-color: #d3eae2;
+    overflow-x: hidden;
+}
+
+input, label {
+    display:block;
+}
+
+#img {
+    opacity: 0;
+    height: 0px;
+}
+
+.form-control {
+    border: 3px solid #52a295;
+    height: 40px;
+}
+
+.form-label {
+    margin-top: 16px;
+    margin-bottom: 2px;
+    font-size: 20px;
+}
+
+.img {
+    height: 145px;
+    width: 155px;
+    margin-top: 40px;
+    border: 3px solid #52a295;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.title {
+    font-size: 55px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin-top: 100px;
+}
+
+hr {
+    color: #29534d;
+    padding: 2px;
+    margin: 0px;
+}

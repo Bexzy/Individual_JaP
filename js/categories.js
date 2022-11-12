@@ -143,9 +143,13 @@ document.addEventListener("DOMContentLoaded", function(e){
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-    const userHTML = document.getElementById("user");
 
-    userHTML.innerHTML += localStorage.getItem("user");
+    const userHTML = document.getElementById("user")
+    if (JSON.parse(localStorage.getItem("user")).name != undefined) {
+        userHTML.innerHTML += JSON.parse(localStorage.getItem("user")).name
+    } else {
+        userHTML.innerHTML += JSON.parse(localStorage.getItem("user")).email
+    }
 
         /* Chequea si el usuario está logeado, sino lo redirije al logIn */
         if (localStorage.getItem("user") == null) {
