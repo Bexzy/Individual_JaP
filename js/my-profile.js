@@ -18,7 +18,6 @@ const preview = document.getElementById("preview");
 
 input.addEventListener('change', updateImageDisplay);
 
-
 function updateImageDisplay() {
     preview.innerHTML = "";
     

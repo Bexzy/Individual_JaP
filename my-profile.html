@@ -83,22 +83,45 @@
       <hr>
       <!-- Formulario de datos de usuario -->
       <form action="" class="row">
-        <div class="col-6">        
-          <label for="name" class="form-label">Primer Nombre *</label>
-          <input type="text" name="name" id="name" class="form-control verify">
-          <label for="surName" class="form-label">Primer Apellido *</label>
-          <input type="text" name="surname" id="surname" class="form-control verify">
-          <label for="email" class="form-label">E-Mail *</label>
-          <input type="text" name="email" id="email" class="form-control verify" readonly>
-          <label for="phone" class="form-label">Telefono de Contacto *</label>
-          <input type="text" name="phone" id="phone" class="form-control verify">
+        <div class="col-6">   
+          <div>
+            <label for="name" class="form-label" id="nameLabel">Primer Nombre *</label>
+            <input type="text" name="name" id="name" class="form-control verify" aria-describedby="nameInvalid" aria-label="nameLabel">
+            <div class="invalid-feedback" id="nameInvalid">
+              Debe ingresar su primer nombre.
+            </div>
+          </div>
+          <div>
+            <label for="surName" class="form-label" id="surnameLabel">Primer Apellido *</label>
+            <input type="text" name="surname" id="surname" class="form-control verify" aria-describedby="surnameInvalid" aria-label="surnameLabel">
+            <div class="invalid-feedback" id="surnameInvalid">
+              Debe ingresar su primer apellido
+            </div>
+          </div>  
+          <div>
+            <label for="email" class="form-label" id="mailLabel">E-Mail *</label>
+            <input type="text" name="email" id="email" class="form-control verify" readonly aria-describedby="mailInvalid" aria-label="mailLabel">
+            <div class="invalid-feedback" id="mailInvalid">
+              Ha ocurrido un error con el eMail, porfavor intente más tarde.
+            </div>
+          </div>
+          <div>
+            <label for="phone" class="form-label" id="phoneLabel">Teléfono de Contacto *</label>
+            <input type="text" name="phone" id="phone" class="form-control verify" aria-describedby="phoneInvalid" aria-label="phoneLabel">
+            <div class="invalid-feedback" id="phoneInvalid">
+              Debe ingresar un teléfono de contacto.
+            </div>
+          </div>
         </div>
         <div class="col-6">
-          <label for="secName" class="form-label">Segundo Nombre</label>
-          <input type="text" name="secName" id="secName" class="form-control">
-          <label for="secSurname" class="form-label">Segundo Apellido</label>
-          <input type="text" name="secSurname" id="secSurname" class="form-control">
-
+          <div>
+            <label for="secName" class="form-label">Segundo Nombre</label>
+            <input type="text" name="secName" id="secName" class="form-control">
+          </div>
+          <div>
+            <label for="secSurname" class="form-label">Segundo Apellido</label>
+            <input type="text" name="secSurname" id="secSurname" class="form-control">
+          </div>
           <div class="card mt-4">
             <label for="img" class="btn btn-success fs-5">Elegir foto de Perfil (PNG, JPG, JPEG)</label>
             <input type="file" id="img" name="img" accept=".jpg, .jpeg, .png" multiple/>
