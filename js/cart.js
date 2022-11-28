@@ -344,7 +344,7 @@ function shippingCost(id, actualPrice) {
     }
 }
 
-
+let selectedShipping = undefined;
 
 const checkboxes = [(document.getElementById("fpremium")),(document.getElementById("fexpress")), (document.getElementById("fstandard"))]
 /* Genera */
@@ -355,7 +355,7 @@ checkboxes.forEach(element => {
         checkIcon(element.id)
         document.getElementById("shipPrice").innerHTML = (shippingCost(element.id, JSON.parse(actualPrice))).toFixed(2)
         document.getElementById("totalPrice").innerHTML = (shippingCost(element.id, JSON.parse(actualPrice)) + JSON.parse(actualPrice)).toFixed(2)
-        
+        selectedShipping = element.value
     });
 });
 
@@ -544,9 +544,80 @@ function finishCart() {
     escuchar()
     if (document.querySelectorAll(".is-invalid").length == 0) {
         modalSuccess.toggle()
+        logBuy()
     }
 }
 
 var modalSuccess = new bootstrap.Modal(document.getElementById('modalSuccess'), {
     keyboard: false
 })
+
+
+/* Crea un JSON con los datos de la compra */
+async function logBuy(){
+    let nombre = JSON.parse(localStorage.getItem("user")).name;
+    let mail = JSON.parse(localStorage.getItem("user")).email;
+    let shipping = selectedShipping;
+    let cost = document.getElementById('totalPrice').innerHTML;
+    let metodoPago = selectedMethod;
+    let calle = document.getElementById('street').value;
+    let numeroCasa = document.getElementById('number').value;
+    let esquina = document.getElementById('corner').value;
+    let detallesEspeciales = document.getElementById('specialDetails').value;
+    let carro = JSON.parse(localStorage.getItem("cart"))
+
+    var formData =  {
+                        id: 001,
+                        name: nombre,
+                        email: mail,
+                        shippingMethod: shipping,
+                        totalCost: cost,
+                        currency: "USD",
+                        payMethod: metodoPago,
+                        items: [],
+                        shipping:   {
+                                        street: calle,
+                                        number: numeroCasa,
+                                        corner: esquina,
+                                        specialDetails: detallesEspeciales
+                                    },
+                    };
+
+    /* formData.id = (001);
+    formData.name = (nombre.value);
+    formData.email = (mail.value);
+    formData.shippingMethod = (shipping.value);
+    formData.totalCost = (cost.value);
+    formData.currency = "USD";
+    formData.items = []; */
+    carro.forEach(element => {
+        formData.items.push(
+            {
+                itemID: element.id,
+                itemAmount: element.amount
+            }
+        )
+    });
+/*  formData.payMethod = undefined;
+    formData.shipping = [];
+    formData.shipping.push(
+        {
+            street: undefined,
+            number: undefined,
+            corner: undefined,
+            specialDetails: undefined,
+        }
+    ); */
+
+    let response = await fetch('http://localhost:3000/data/user_buy_history/', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+    });
+
+    let respuestaFinal = await response.json()
+    console.log(respuestaFinal);
+};
